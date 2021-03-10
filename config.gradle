@@ -7,7 +7,7 @@ ext {
             versionCode                   : 36,
             versionName                   : "0.7.1",
             ucropVersionCode              : 25,
-            ucropVersionName              : "2.2.5-native",
+//            ucropVersionName              : "2.2.5-native",
             insGalleryVersion             : "7.0.2",
 
             //open version control

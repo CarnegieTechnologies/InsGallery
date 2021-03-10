@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         PictureSelector.create(MainActivity.this)
                                 .themeStyle(R.style.picture_default_style) // xml设置主题
                                 //.setPictureWindowAnimationStyle(animationStyle)// 自定义页面启动动画
-                                .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)// 设置相册Activity方向，不设置默认使用系统
+                                .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)// 设置相册Activity方向，不设置默认使用系统
                                 .isNotPreviewDownload(true)// 预览图片长按是否可以下载
                                 //.bindCustomPlayVideoCallback(callback)// 自定义播放回调控制，用户可以使用自己的视频播放界面
                                 .loadImageEngine(GlideEngine.createGlideEngine())// 外部传入图片加载引擎，必传项
@@ -392,38 +392,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.left_back:
-                finish();
-                break;
-            case R.id.minus:
-                if (maxSelectNum > 1) {
-                    maxSelectNum--;
-                }
-                tv_select_num.setText(maxSelectNum + "");
-                mAdapter.setSelectMax(maxSelectNum);
-                break;
-            case R.id.plus:
-                maxSelectNum++;
-                tv_select_num.setText(maxSelectNum + "");
-                mAdapter.setSelectMax(maxSelectNum);
-                break;
-        }
+//        switch (v.getId()) {
+//            case R.id.left_back:
+//                finish();
+//                break;
+//            case R.id.minus:
+//                if (maxSelectNum > 1) {
+//                    maxSelectNum--;
+//                }
+//                tv_select_num.setText(maxSelectNum + "");
+//                mAdapter.setSelectMax(maxSelectNum);
+//                break;
+//            case R.id.plus:
+//                maxSelectNum++;
+//                tv_select_num.setText(maxSelectNum + "");
+//                mAdapter.setSelectMax(maxSelectNum);
+//                break;
+//        }
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        switch (checkedId) {
-            case R.id.rb_default_style:
-                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DEFAULT);
-                break;
-            case R.id.rb_dark_style:
-                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DARK);
-                break;
-            case R.id.rb_dark_blue_style:
-                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DARK_BLUE);
-                break;
-        }
+        //            case R.id.rb_default_style:
+        //                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DEFAULT);
+        //                break;
+        //            case R.id.rb_dark_style:
+        //                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DARK);
+        //                break;
+        //            case R.id.rb_dark_blue_style:
+        //                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DARK_BLUE);
+        //                break;
     }
 
     @Override
