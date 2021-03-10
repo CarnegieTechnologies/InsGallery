@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion cfgs.compileSdkVersion
@@ -29,6 +30,17 @@ android {
     resourcePrefix 'ucrop_'
 }
 
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "http://nexus.carnegietechnologies.rs:8085/repository/android-library/") {
+            authentication(userName: "deployment", password: "deployment123")
+            pom.groupId = "com.carnegietechnologies.flutter"
+            pom.artifactId = "ucrop"
+            pom.version = "${cfgs.insGalleryVersion}"
+        }
+    }
+}
+
 dependencies {
     implementation "androidx.appcompat:appcompat:${cfgs.androidx_appcompat_version}"
     implementation "androidx.exifinterface:exifinterface:${cfgs.androidx_exifinterface_version}"
@@ -36,4 +48,4 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${cfgs.version_recyclerview}"
 }
 
-apply from: 'bintray.gradle'
+//apply from: 'bintray.gradle'

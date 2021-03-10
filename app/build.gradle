@@ -34,8 +34,6 @@ android {
 
 dependencies {
     implementation project(':picture_library')
-//    implementation 'me.jessyan:insgallery:0.7.0'
-
     implementation "androidx.appcompat:appcompat:${cfgs.version_appcompat}"
     implementation "androidx.recyclerview:recyclerview:${cfgs.version_recyclerview}"
     implementation "androidx.camera:camera-camera2:${cfgs.camerax_version}"
