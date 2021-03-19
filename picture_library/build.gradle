@@ -35,6 +35,17 @@ uploadArchives {
             pom.groupId = "com.carnegietechnologies.flutter"
             pom.artifactId = "pictureLibrary"
             pom.version = "${cfgs.insGalleryVersion}"
+
+            //generate pom nodes for dependencies
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                configurations.compile.allDependencies.each { dependency ->
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', dependency.group)
+                    dependencyNode.appendNode('artifactId', dependency.name)
+                    dependencyNode.appendNode('version', dependency.version)
+                }
+            }
         }
     }
 }
@@ -48,9 +59,9 @@ dependencies {
     implementation "androidx.camera:camera-lifecycle:${cfgs.camerax_version}"
     implementation "androidx.localbroadcastmanager:localbroadcastmanager:${cfgs.localbroadcastmanager}"
     implementation "androidx.camera:camera-view:${cfgs.camerax_view}"
-    api project(':ucrop')
+    implementation("com.carnegietechnologies.flutter:ucrop:7.0.2")
+
     api 'com.otaliastudios:transcoder:0.9.1'
-//    api 'com.googlecode.mp4parser:isoparser:1.1.22'
     api 'jp.co.cyberagent.android:gpuimage:2.0.4'
 }
 
