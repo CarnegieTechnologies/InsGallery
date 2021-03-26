@@ -48,6 +48,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.luck.picture.lib.instagram.InsGallery.applyInstagramOptions;
+
 /**
  * @author：luck
  * @data：2019/12/20 晚上 23:12
@@ -353,7 +355,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void onAddPicClick() {
             //第一种方式可通过自定义监听器的方式拿到选择的图片，第二种方式可通过官方的 onActivityResult 的方式拿到选择的图片
 //            InsGallery.openGallery(MainActivity.this, GlideEngine.createGlideEngine(), GlideCacheEngine.createCacheEngine(), mAdapter.getData(), new OnResultCallbackListenerImpl(mAdapter));
-            InsGallery.openGallery(MainActivity.this, GlideEngine.createGlideEngine(), GlideCacheEngine.createCacheEngine(), mAdapter.getData());
+//            InsGallery.openGallery(MainActivity.this, GlideEngine.createGlideEngine(), GlideCacheEngine.createCacheEngine(), mAdapter.getData());
+            applyInstagramOptions(MainActivity.this, PictureSelector.create(MainActivity.this)
+                    .openGallery(PictureMimeType.ofAll()))// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                    .imageEngine(GlideEngine.createGlideEngine())// 外部传入图片加载引擎，必传项
+                    .loadCacheResourcesCallback(GlideCacheEngine.createCacheEngine())// 获取图片资源缓存，主要是解决华为10部分机型在拷贝文件过多时会出现卡的问题，这里可以判断只在会出现一直转圈问题机型上使用
+                    .selectionData(mAdapter.getData()).isEnableCrop(true).isMaxSelectEnabledMask(true).maxSelectNum(1).maxVideoSelectNum(1)// 是否传入已选图片
+                    .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivity
         }
     };
 
@@ -393,36 +401,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.left_back:
-                finish();
-                break;
-            case R.id.minus:
-                if (maxSelectNum > 1) {
-                    maxSelectNum--;
-                }
-                tv_select_num.setText(maxSelectNum + "");
-                mAdapter.setSelectMax(maxSelectNum);
-                break;
-            case R.id.plus:
-                maxSelectNum++;
-                tv_select_num.setText(maxSelectNum + "");
-                mAdapter.setSelectMax(maxSelectNum);
-                break;
+//            case R.id.left_back:
+//                finish();
+//                break;
+//            case R.id.minus:
+//                if (maxSelectNum > 1) {
+//                    maxSelectNum--;
+//                }
+//                tv_select_num.setText(maxSelectNum + "");
+//                mAdapter.setSelectMax(maxSelectNum);
+//                break;
+//            case R.id.plus:
+//                maxSelectNum++;
+//                tv_select_num.setText(maxSelectNum + "");
+//                mAdapter.setSelectMax(maxSelectNum);
+//                break;
         }
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         switch (checkedId) {
-            case R.id.rb_default_style:
-                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DEFAULT);
-                break;
-            case R.id.rb_dark_style:
-                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DARK);
-                break;
-            case R.id.rb_dark_blue_style:
-                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DARK_BLUE);
-                break;
+//            case R.id.rb_default_style:
+//                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DEFAULT);
+//                break;
+//            case R.id.rb_dark_style:
+//                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DARK);
+//                break;
+//            case R.id.rb_dark_blue_style:
+//                InsGallery.setCurrentTheme(InsGallery.THEME_STYLE_DARK_BLUE);
+//                break;
         }
     }
 

@@ -1,10 +1,12 @@
-apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion cfgs.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.luck.pictureselector"
+//        applicationId "com.luck.pictureselector"
         minSdkVersion cfgs.minSdkVersion
         targetSdkVersion cfgs.targetSdkVersion
         versionCode cfgs.versionCode
@@ -32,10 +34,29 @@ android {
     }
 }
 
-dependencies {
-    implementation project(':picture_library')
-//    implementation 'me.jessyan:insgallery:0.7.0'
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "http://nexus.carnegietechnologies.rs:8085/repository/android-library/") {
+            authentication(userName: "deployment", password: "deployment123")
+            pom.groupId = "com.carnegietechnologies.flutter"
+            pom.artifactId = "instagramGallery"
+            pom.version = "1.0.2"
+//            //generate pom nodes for dependencies
+//            pom.withXml {
+//                def dependenciesNode = asNode().appendNode('dependencies')
+//                configurations.compile.allDependencies.each { dependency ->
+//                    def dependencyNode = dependenciesNode.appendNode('dependency')
+//                    dependencyNode.appendNode('groupId', dependency.group)
+//                    dependencyNode.appendNode('artifactId', dependency.name)
+//                    dependencyNode.appendNode('version', dependency.version)
+//                }
+//            }
+        }
+    }
+}
 
+dependencies {
+    implementation("com.carnegietechnologies.flutter:pictureLibrary:0.0.4")
     implementation "androidx.appcompat:appcompat:${cfgs.version_appcompat}"
     implementation "androidx.recyclerview:recyclerview:${cfgs.version_recyclerview}"
     implementation "androidx.camera:camera-camera2:${cfgs.camerax_version}"
