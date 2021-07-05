@@ -4,11 +4,11 @@ ext {
             buildToolsVersion             : "29.0.3",
             minSdkVersion                 : 19,
             targetSdkVersion              : 29,
-            versionCode                   : 35,
-            versionName                   : "0.7.0",
+            versionCode                   : 36,
+            versionName                   : "0.7.1",
             ucropVersionCode              : 25,
-            ucropVersionName              : "2.2.5-native",
-
+//            ucropVersionName              : "2.2.5-native",
+            insGalleryVersion             : "7.0.2",
 
             //open version control
             androidSupportVersion         : "27.0.2",

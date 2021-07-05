@@ -113,6 +113,7 @@
 
 #rxandroid
 -dontwarn sun.misc.**
+-dontwarn com.yalantis.ucrop.**
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
    long producerIndex;
    long consumerIndex;
